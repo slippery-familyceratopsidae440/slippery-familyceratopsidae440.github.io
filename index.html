@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sylvi — Marketing & Creative Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #F7F3E8;
+    --bg-raise: #FFFFFF;
+    --ink: #17161A;
+    --muted: #6B6A63;
+    --accent: #FF4D6D;
+    --accent-2: #C1440E;
+    --line: #DDD6C4;
+    --display: 'Bebas Neue', sans-serif;
+    --body: 'Inter', sans-serif;
+    --mono: 'IBM Plex Mono', monospace;
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+
+  html{ scroll-behavior:smooth; }
+
+  body{
+    background-color: #f7f3ea;
+    background-image: url("assets/batthern.png");
+    color:var(--ink);
+    font-family:var(--body);
+    line-height:1.5;
+    overflow-x:hidden;
+  }
+
+  a{ color:inherit; text-decoration:none; }
+
+  .wrap{
+    max-width:1100px;
+    margin:0 auto;
+    padding:0 32px;
+  }
+
+  /* ---------- NAV ---------- */
+  header{
+    position:fixed;
+    top:0; left:0; right:0;
+    z-index:100;
+    backdrop-filter: blur(10px);
+    background: rgba(247,243,232,0.75);
+    border-bottom:1px solid var(--line);
+  }
+  nav{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:18px 32px;
+    max-width:1100px;
+    margin:0 auto;
+  }
+  .logo{
+    font-family:var(--mono);
+    font-size:14px;
+    letter-spacing:0.1em;
+    color:var(--accent-2);
+  }
+  .navlinks{
+    display:flex;
+    gap:28px;
+    font-size:13px;
+    font-family:var(--mono);
+    letter-spacing:0.05em;
+  }
+  .navlinks a{
+    color:var(--muted);
+    transition:color .2s ease;
+  }
+  .navlinks a:hover{ color:var(--ink); }
+
+  @media (max-width:640px){
+    .navlinks{ display:none; }
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    padding-top:80px;
+    position:relative;
+  }
+  .timecode{
+    font-family:var(--mono);
+    font-size:12px;
+    color:var(--accent);
+    letter-spacing:0.15em;
+    margin-bottom:20px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .timecode::before{
+    content:"";
+    width:8px; height:8px;
+    border-radius:50%;
+    background:var(--accent);
+    box-shadow:0 0 12px var(--accent);
+    animation:pulse 1.6s infinite ease-in-out;
+  }
+  @keyframes pulse{
+    0%,100%{ opacity:1; }
+    50%{ opacity:0.3; }
+  }
+
+  h1.title{
+    font-family:var(--display);
+    font-size:clamp(64px, 13vw, 150px);
+    line-height:0.88;
+    letter-spacing:0.01em;
+    text-transform:uppercase;
+  }
+  h1.title span{
+    display:block;
+    color:transparent;
+    -webkit-text-stroke:1.5px var(--ink);
+    text-stroke:1.5px var(--ink);
+  }
+
+  .hero-role{
+    font-family:var(--mono);
+    font-size:15px;
+    color:var(--muted);
+    margin-top:24px;
+    letter-spacing:0.02em;
+  }
+  .hero-role b{ color:var(--accent-2); font-weight:500; }
+
+  .hero-cta{
+    display:flex;
+    gap:16px;
+    margin-top:44px;
+    flex-wrap:wrap;
+  }
+  .btn{
+    font-family:var(--mono);
+    font-size:13px;
+    letter-spacing:0.05em;
+    padding:14px 26px;
+    border-radius:2px;
+    border:1px solid var(--line);
+    transition:all .2s ease;
+  }
+  .btn-primary{
+    background:var(--accent);
+    color:#0B0B0D;
+    border-color:var(--accent);
+    font-weight:600;
+  }
+  .btn-primary:hover{ background:#ff667e; }
+  .btn-ghost{ color:var(--ink); }
+  .btn-ghost:hover{ border-color:var(--ink); }
+
+  .scroll-hint{
+    position:absolute;
+    bottom:36px; left:32px;
+    font-family:var(--mono);
+    font-size:11px;
+    color:var(--muted);
+    letter-spacing:0.1em;
+  }
+
+  /* ---------- SECTION LABELS ---------- */
+  .section{
+    padding:120px 0;
+    border-top:1px solid var(--line);
+  }
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:12px;
+    color:var(--accent-2);
+    letter-spacing:0.15em;
+    margin-bottom:16px;
+  }
+  h2.section-title{
+    font-family:var(--display);
+    font-size:clamp(36px,6vw,56px);
+    text-transform:uppercase;
+    letter-spacing:0.01em;
+    margin-bottom:40px;
+  }
+
+  /* ---------- ABOUT ---------- */
+  .about-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:60px;
+    align-items:start;
+  }
+  .about-text p{
+    font-size:17px;
+    color:#D8D6D0;
+    margin-bottom:18px;
+  }
+  .about-text strong{ color:var(--ink); }
+  .stat-list{
+    font-family:var(--mono);
+    font-size:13px;
+    color:var(--muted);
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+    border-left:2px solid var(--accent);
+    padding-left:20px;
+  }
+  .stat-list b{ color:var(--ink); display:block; font-size:15px; margin-bottom:2px; font-family:var(--body); }
+
+  @media (max-width:768px){
+    .about-grid{ grid-template-columns:1fr; }
+  }
+
+  /* ---------- REEL / WORK ---------- */
+  .reel-item{
+    display:grid;
+    grid-template-columns:120px 1fr;
+    gap:32px;
+    padding:36px 0;
+    border-bottom:1px solid var(--line);
+    align-items:center;
+  }
+  .reel-item:first-of-type{ border-top:1px solid var(--line); }
+  .reel-tc{
+    font-family:var(--mono);
+    font-size:13px;
+    color:var(--accent);
+  }
+  .reel-frame{
+    position:relative;
+    aspect-ratio:16/9;
+    background:var(--bg-raise);
+    border:1px solid var(--line);
+    border-radius:2px;
+    overflow:hidden;
+  }
+  .reel-frame iframe{
+    width:100%; height:100%; border:0;
+  }
+  .reel-info h3{
+    font-family:var(--body);
+    font-weight:700;
+    font-size:20px;
+    margin-bottom:6px;
+  }
+  .reel-info p{
+    color:var(--muted);
+    font-size:14px;
+  }
+  .reel-content{
+    display:grid;
+    grid-template-columns:1.1fr 1fr;
+    gap:28px;
+    align-items:center;
+  }
+  @media (max-width:768px){
+    .reel-item{ grid-template-columns:1fr; gap:16px; }
+    .reel-content{ grid-template-columns:1fr; }
+  }
+
+  /* ---------- SKILLS ---------- */
+  .skills-grid{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+  }
+  .skill-tag{
+    font-family:var(--mono);
+    font-size:13px;
+    padding:10px 18px;
+    border:1px solid var(--line);
+    border-radius:999px;
+    color:var(--ink);
+    transition:all .2s ease;
+  }
+  .skill-tag:hover{
+    border-color:var(--accent-2);
+    color:var(--accent-2);
+  }
+
+  /* ---------- EXPERIENCE ---------- */
+  .exp-item{
+    display:grid;
+    grid-template-columns:180px 1fr;
+    gap:24px;
+    padding:28px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .exp-item:first-of-type{ border-top:1px solid var(--line); }
+  .exp-date{
+    font-family:var(--mono);
+    font-size:13px;
+    color:var(--muted);
+  }
+  .exp-role{
+    font-weight:700;
+    font-size:17px;
+    margin-bottom:4px;
+  }
+  .exp-org{
+    color:var(--accent-2);
+    font-size:14px;
+    margin-bottom:8px;
+  }
+  .exp-desc{
+    color:var(--muted);
+    font-size:14px;
+  }
+  @media (max-width:600px){
+    .exp-item{ grid-template-columns:1fr; gap:8px; }
+  }
+
+  /* ---------- CONTACT ---------- */
+  .contact-title{
+    font-family:var(--display);
+    font-size:clamp(48px,10vw,110px);
+    text-transform:uppercase;
+    line-height:0.9;
+    margin-bottom:32px;
+  }
+  .contact-links{
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+    margin-top:36px;
+  }
+
+  footer{
+    padding:32px;
+    text-align:center;
+    font-family:var(--mono);
+    font-size:12px;
+    color:var(--muted);
+    border-top:1px solid var(--line);
+  }
+
+  [data-reveal]{
+    opacity:0;
+    transform:translateY(24px);
+    transition:opacity .7s ease, transform .7s ease;
+  }
+  [data-reveal].visible{
+    opacity:1;
+    transform:translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    [data-reveal]{ opacity:1; transform:none; transition:none; }
+    .timecode::before{ animation:none; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="logo">SYLVI.REEL</div>
+    <div class="navlinks">
+      <a href="#about">ABOUT</a>
+      <a href="#work">WORK</a>
+      <a href="#skills">SKILLS</a>
+      <a href="#experience">EXPERIENCE</a>
+      <a href="#contact">CONTACT</a>
+    </div>
+  </nav>
+</header>
+
+<section class="hero wrap">
+  <div class="timecode">REC · 00:00:01</div>
+  <h1 class="title">SYLVI<br><span>NGUYEN</span></h1>
+  <p class="hero-role">Business Admin @ UEH &nbsp;·&nbsp; <b>Marketing</b> &nbsp;·&nbsp; <b>Video</b> &nbsp;·&nbsp; <b>Creative</b></p>
+  <div class="hero-cta">
+    <a href="#work" class="btn btn-primary">▶ VIEW REEL</a>
+    <a href="#contact" class="btn btn-ghost">GET IN TOUCH</a>
+  </div>
+  <div class="scroll-hint">SCROLL ↓</div>
+</section>
+
+<section class="section" id="about">
+  <div class="wrap">
+    <div class="eyebrow">00:00:02 — ABOUT</div>
+    <h2 class="section-title">The Person<br>Behind the Camera</h2>
+    <div class="about-grid">
+      <div class="about-text" data-reveal>
+        <p><strong>[Replace with your intro — 2-3 sentences.]</strong> e.g. "I'm a final-year Business Administration student at UEH, majoring in Management, with hands-on experience running digital ad campaigns and producing video content for real clients."</p>
+        <p>I love the moment where a strategy meets a story — where a Meta Ads campaign isn't just numbers, but a piece of content someone actually wants to watch. That's what pulled me toward marketing, and why I keep a camera close by.</p>
+        <p>Currently looking for an <strong>Account, Marketing, or Creative internship</strong> where I can bring both sides of that to the table.</p>
+      </div>
+      <div class="stat-list" data-reveal>
+        <div><b>Location</b>Ho Chi Minh City, Vietnam</div>
+        <div><b>Studying</b>Business Administration, UEH — Class of 2027</div>
+        <div><b>Languages</b>Vietnamese (native) · English (IELTS 6.5)</div>
+        <div><b>Certifications</b>MOS: Word, Excel, PowerPoint</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="work">
+  <div class="wrap">
+    <div class="eyebrow">00:01:00 — SELECTED WORK</div>
+    <h2 class="section-title">The Reel</h2>
+
+    <div class="reel-item" data-reveal>
+      <div class="reel-tc">01:04</div>
+      <div class="reel-content">
+        <div class="reel-frame">
+          <!-- Replace VIDEO_ID with your YouTube video ID -->
+          <iframe src="https://www.youtube.com/embed/VIDEO_ID" title="Project 1" allowfullscreen></iframe>
+        </div>
+        <div class="reel-info">
+          <h3>[Project Title]</h3>
+          <p>[One line: what it was, your role, the result — e.g. "Brand short-form video for a local café, filmed & edited solo, 40K+ views on TikTok."]</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="reel-item" data-reveal>
+      <div class="reel-tc">02:17</div>
+      <div class="reel-content">
+        <div class="reel-frame">
+          <iframe src="https://www.youtube.com/embed/VIDEO_ID" title="Project 2" allowfullscreen></iframe>
+        </div>
+        <div class="reel-info">
+          <h3>[Project Title]</h3>
+          <p>[Description of your second project.]</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="reel-item" data-reveal>
+      <div class="reel-tc">03:42</div>
+      <div class="reel-content">
+        <div class="reel-frame">
+          <iframe src="https://www.youtube.com/embed/VIDEO_ID" title="Project 3" allowfullscreen></iframe>
+        </div>
+        <div class="reel-info">
+          <h3>[Project Title]</h3>
+          <p>[Description of your third project.]</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="skills">
+  <div class="wrap">
+    <div class="eyebrow">00:02:15 — TOOLKIT</div>
+    <h2 class="section-title">Skills</h2>
+    <div class="skills-grid" data-reveal>
+      <span class="skill-tag">Meta Ads</span>
+      <span class="skill-tag">Google Ads</span>
+      <span class="skill-tag">TikTok Ads</span>
+      <span class="skill-tag">Video Editing</span>
+      <span class="skill-tag">Content Planning</span>
+      <span class="skill-tag">Photography</span>
+      <span class="skill-tag">MS Office (MOS)</span>
+      <span class="skill-tag">Sales & Client Comms</span>
+      <span class="skill-tag">English (IELTS 6.5)</span>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="experience">
+  <div class="wrap">
+    <div class="eyebrow">00:03:30 — CREDITS</div>
+    <h2 class="section-title">Experience</h2>
+
+    <div class="exp-item" data-reveal>
+      <div class="exp-date">OCT – DEC 2025</div>
+      <div>
+        <div class="exp-role">Freelance Photographer & Video Production Collaborator</div>
+        <div class="exp-org">Dai Dai Media</div>
+        <div class="exp-desc">[Add 1-2 lines on what you shot/edited and for whom.]</div>
+      </div>
+    </div>
+
+    <div class="exp-item" data-reveal>
+      <div class="exp-date">JUN 2024</div>
+      <div>
+        <div class="exp-role">Real Estate Sales Intern</div>
+        <div class="exp-org">Dat Xanh Services</div>
+        <div class="exp-desc">[Add 1-2 lines on responsibilities and outcomes.]</div>
+      </div>
+    </div>
+
+    <div class="exp-item" data-reveal>
+      <div class="exp-date">AUG – DEC 2023</div>
+      <div>
+        <div class="exp-role">Sales Executive</div>
+        <div class="exp-org">Tin Hoc S.T.A.R Co., Ltd.</div>
+        <div class="exp-desc">[Add 1-2 lines on responsibilities and outcomes.]</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="contact">
+  <div class="wrap">
+    <div class="eyebrow">00:04:44 — LET'S TALK</div>
+    <h1 class="contact-title">Cut To<br>You.</h1>
+    <p style="color:var(--muted); font-size:16px; max-width:480px;">Open to Account, Digital Marketing, and Creative internships. Reach out — I'd love to talk about how I can help your team.</p>
+    <div class="contact-links">
+      <a href="mailto:your.email@example.com" class="btn btn-primary">EMAIL ME</a>
+      <a href="https://linkedin.com/in/yourprofile" class="btn btn-ghost" target="_blank">LINKEDIN ↗</a>
+      <a href="#" class="btn btn-ghost">DOWNLOAD CV ↓</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2026 SYLVI NGUYEN — BUILT WITH GITHUB PAGES
+</footer>
+
+<script>
+  const revealEls = document.querySelectorAll('[data-reveal]');
+  const observer = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  },{ threshold:0.15 });
+  revealEls.forEach(el=>observer.observe(el));
+</script>
+
+</body>
+</html>
