@@ -28,14 +28,11 @@
   html{ scroll-behavior:smooth; }
 
   body{
-    background-color: #C9A87C;
+    background-color: #0A0A0B;
     background-image:
-      linear-gradient(rgba(70,50,25,0.28) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(70,50,25,0.28) 1px, transparent 1px),
-      radial-gradient(rgba(60,40,20,0.4) 0.7px, transparent 0.7px),
-      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.012' numOctaves='4' seed='7' result='t'/%3E%3CfeColorMatrix in='t' type='matrix' values='0 0 0 0 0.25  0 0 0 0 0.16  0 0 0 0 0.07  0 0 0 0.4 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    background-size: 24px 24px, 24px 24px, 24px 24px, 300px 300px;
-    background-position: -1px -1px, -1px -1px, -1px -1px, 0 0;
+      radial-gradient(rgba(120,120,120,0.35) 1px, transparent 1px);
+    background-size: 22px 22px;
+    background-position: 0 0;
     color:var(--ink);
     font-family:var(--body);
     line-height:1.5;
@@ -56,8 +53,7 @@
     top:0; left:0; right:0;
     z-index:100;
     backdrop-filter: blur(10px);
-    background: rgba(201,168,124,0.75);
-    border-bottom:1px solid var(--line);
+    background: rgba(10,10,11,0.75);
   }
   nav{
     display:flex;
@@ -71,8 +67,8 @@
     font-family:var(--mono);
     font-size:14px;
     letter-spacing:0.1em;
-    color:var(--onbg-label);
-    text-shadow: 0 1px 3px rgba(30,20,5,0.4);
+    color:#5EEAD4;
+    text-shadow: 0 0 8px rgba(94,234,212,0.4);
   }
   .navlinks{
     display:flex;
@@ -82,11 +78,11 @@
     letter-spacing:0.05em;
   }
   .navlinks a{
-    color:#3A2A12;
-    text-shadow: 0 1px 2px rgba(255,248,230,0.5);
+    color:#EDEDED;
+    text-shadow: 0 1px 6px rgba(0,229,255,0.35);
     transition:color .2s ease;
   }
-  .navlinks a:hover{ color:#17161A; }
+  .navlinks a:hover{ color:#FFFFFF; }
 
   @media (max-width:640px){
     .navlinks{ display:none; }
@@ -111,7 +107,7 @@
   .timecode{
     font-family:var(--mono);
     font-size:12px;
-    color:var(--accent);
+    color:#8C0F22;
     letter-spacing:0.15em;
     margin-bottom:20px;
     display:flex;
@@ -122,8 +118,8 @@
     content:"";
     width:8px; height:8px;
     border-radius:50%;
-    background:var(--accent);
-    box-shadow:0 0 12px var(--accent);
+    background:#8C0F22;
+    box-shadow:0 0 12px #8C0F22;
     animation:pulse 1.6s infinite ease-in-out;
   }
   @keyframes pulse{
@@ -144,6 +140,11 @@
     color:transparent;
     -webkit-text-stroke:1.5px var(--ink);
     text-stroke:1.5px var(--ink);
+  }
+  h1.title .accent-word{
+    color:var(--accent);
+    -webkit-text-stroke:0;
+    text-stroke:0;
   }
 
   .hero-role{
@@ -190,10 +191,34 @@
     margin-top:20px;
   }
 
+  .more-indicator{
+    position:absolute;
+    bottom:28px;
+    left:50%;
+    transform:translateX(-50%);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:6px;
+    animation:bob 1.8s infinite ease-in-out;
+  }
+  .more-indicator svg{
+    width:22px; height:22px;
+    stroke:#00E5FF;
+    filter:drop-shadow(0 0 6px rgba(0,229,255,0.6));
+  }
+  @keyframes bob{
+    0%,100%{ transform:translate(-50%,0); }
+    50%{ transform:translate(-50%,8px); }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .more-indicator{ animation:none; }
+  }
+
   /* ---------- LETTERBOX (paper card) ---------- */
   .box{
-    background: #FBF7EC;
-    border:1px solid #E9DFC4;
+    background: #FFFDF6;
+    border:1px solid #EFE7CE;
     box-shadow: 0 16px 34px rgba(35,22,5,0.28), 0 3px 8px rgba(35,22,5,0.16);
     padding:40px;
     border-radius:2px;
@@ -226,7 +251,6 @@
   /* ---------- SECTION LABELS ---------- */
   .section{
     padding:120px 0;
-    border-top:1px solid var(--line);
   }
   .eyebrow{
     font-family:var(--mono);
@@ -241,10 +265,10 @@
     text-transform:uppercase;
     letter-spacing:0.01em;
     margin-bottom:40px;
-    color:#1A1408;
+    color:#F5F5F5;
     text-shadow:
-      0 2px 0 rgba(255,248,230,0.7),
-      0 4px 14px rgba(255,248,230,0.5);
+      0 0 8px rgba(0,229,255,0.55),
+      0 0 22px rgba(0,229,255,0.35);
   }
 
   /* ---------- ABOUT ---------- */
@@ -301,6 +325,11 @@
   .reel-frame iframe{
     width:100%; height:100%; border:0;
   }
+  .reel-frame.vertical{
+    aspect-ratio:9/16;
+    max-width:240px;
+    margin:0 auto;
+  }
   .reel-info h3{
     font-family:var(--body);
     font-weight:700;
@@ -341,6 +370,10 @@
     border-color:var(--accent-2);
     color:var(--accent-2);
   }
+  .skill-tag.app-tag{
+    background: rgba(0,229,255,0.07);
+    border-color: rgba(0,140,160,0.55);
+  }
 
   /* ---------- EXPERIENCE TIMELINE ---------- */
   .timeline{
@@ -352,7 +385,7 @@
     position:absolute;
     left:6px; top:6px; bottom:6px;
     width:2px;
-    background:#FBF7EC;
+    background:#FFFDF6;
     opacity:0.6;
   }
   .exp-item{
@@ -367,7 +400,7 @@
     width:13px; height:13px;
     border-radius:50%;
     background:var(--accent);
-    border:3px solid #FBF7EC;
+    border:3px solid #FFFDF6;
     box-shadow:0 0 0 1px rgba(0,0,0,0.15), 0 2px 6px rgba(30,20,5,0.3);
   }
   .exp-date{
@@ -422,6 +455,145 @@
     .case-grid{ grid-template-columns:1fr; }
   }
 
+  .role-badge{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:0.06em;
+    color:var(--accent-2);
+    background:rgba(193,68,14,0.08);
+    border:1px solid rgba(193,68,14,0.35);
+    padding:6px 12px;
+    border-radius:999px;
+    margin-top:14px;
+  }
+
+  .case-subhead{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:0.12em;
+    color:var(--accent-2);
+    margin:32px 0 14px;
+    padding-top:20px;
+    border-top:1px solid #E9DFC4;
+  }
+  .case-subhead:first-of-type{ border-top:none; padding-top:0; margin-top:24px; }
+
+  .strategy-columns{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:24px;
+  }
+  .strategy-col{
+    background:rgba(23,22,26,0.03);
+    border:1px solid #EFE7CE;
+    border-radius:4px;
+    padding:18px 20px;
+  }
+  .strategy-col h4{
+    font-family:var(--body);
+    font-size:14px;
+    font-weight:700;
+    color:var(--ink);
+    margin-bottom:10px;
+  }
+  .strategy-col ul{
+    list-style:none;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+  }
+  .strategy-col li{
+    font-size:13px;
+    color:#403E38;
+    padding-left:16px;
+    position:relative;
+  }
+  .strategy-col li::before{
+    content:"-";
+    position:absolute;
+    left:0;
+    color:var(--accent-2);
+  }
+  @media (max-width:700px){
+    .strategy-columns{ grid-template-columns:1fr; }
+  }
+
+  .channel-row{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+  }
+  .channel-chip{
+    font-family:var(--mono);
+    font-size:12px;
+    padding:8px 14px;
+    border:1px solid var(--line);
+    border-radius:999px;
+    color:var(--ink);
+  }
+
+  .kpi-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:16px;
+  }
+  .kpi-card{
+    background:rgba(23,22,26,0.03);
+    border:1px solid #EFE7CE;
+    border-radius:4px;
+    padding:16px;
+    text-align:center;
+  }
+  .kpi-number{
+    font-family:var(--display);
+    font-size:32px;
+    color:var(--accent-2);
+    line-height:1;
+    margin-bottom:6px;
+  }
+  .kpi-label{
+    font-family:var(--mono);
+    font-size:11px;
+    color:var(--muted);
+    letter-spacing:0.03em;
+  }
+  @media (max-width:700px){
+    .kpi-grid{ grid-template-columns:1fr 1fr; }
+  }
+
+  .case-note{
+    font-size:13px;
+    color:var(--muted);
+    font-style:italic;
+    margin-top:18px;
+  }
+
+  .case-title-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    flex-wrap:wrap;
+  }
+  .btn-download{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:0.04em;
+    padding:10px 18px;
+    border-radius:2px;
+    border:1px solid var(--accent-2);
+    color:var(--accent-2);
+    white-space:nowrap;
+    transition:all .2s ease;
+  }
+  .btn-download:hover{
+    background:var(--accent-2);
+    color:#FFFDF6;
+  }
+
   /* ---------- CONTACT ---------- */
   .contact-title{
     font-family:var(--display);
@@ -429,10 +601,10 @@
     text-transform:uppercase;
     line-height:0.9;
     margin-bottom:32px;
-    color:#1A1408;
+    color:#F5F5F5;
     text-shadow:
-      0 2px 0 rgba(255,248,230,0.7),
-      0 4px 14px rgba(255,248,230,0.5);
+      0 0 8px rgba(0,229,255,0.55),
+      0 0 22px rgba(0,229,255,0.35);
   }
   .contact-links{
     display:flex;
@@ -446,9 +618,8 @@
     text-align:center;
     font-family:var(--mono);
     font-size:12px;
-    color:#3A2A12;
-    text-shadow: 0 1px 3px rgba(255,248,230,0.5);
-    border-top:1px solid var(--line);
+    color:#EDEDED;
+    text-shadow: 0 0 8px rgba(0,229,255,0.35);
   }
 
   [data-reveal]{
@@ -471,7 +642,7 @@
 
 <header>
   <nav>
-    <div class="logo">MINH.REEL</div>
+    <div class="logo">SYLVIAN.24</div>
     <div class="navlinks">
       <a href="#about">ABOUT</a>
       <a href="#work">WORK</a>
@@ -489,13 +660,19 @@
   </div>
   <div class="box hero-box" data-reveal>
     <h1 class="title">MINH<br><span>PHAM</span></h1>
-    <p class="hero-role">Business Admin @ UEH &nbsp;·&nbsp; <b>Marketing</b> &nbsp;·&nbsp; <b>Video</b> &nbsp;·&nbsp; <b>Creative</b></p>
+    <p class="hero-role">Business Admin @ UEH &nbsp;·&nbsp; <b>Account</b> &nbsp;·&nbsp; <b>Marketing</b> &nbsp;·&nbsp; <b>Video</b> &nbsp;·&nbsp; <b>Creative</b></p>
     <div class="hero-cta">
       <a href="#work" class="btn btn-primary">▶ VIEW REEL</a>
       <a href="#contact" class="btn btn-ghost">GET IN TOUCH</a>
     </div>
   </div>
   <div class="box tag-box scroll-hint-box" data-reveal><div class="scroll-hint">SCROLL ↓</div></div>
+
+  <div class="more-indicator">
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M6 9l6 6 6-6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </div>
 </section>
 
 <section class="section" id="about">
@@ -527,12 +704,11 @@
         <div class="reel-tc">01:04</div>
         <div class="reel-content">
           <div class="reel-frame">
-            <!-- Replace VIDEO_ID with your YouTube video ID -->
-            <iframe src="https://www.youtube.com/embed/VIDEO_ID" title="Project 1" allowfullscreen></iframe>
+            <iframe src="https://drive.google.com/file/d/1xInjArCQ85aEh4jnBumt1yMHSs-hdL4k/preview" title="UEH-CSR" allowfullscreen></iframe>
           </div>
           <div class="reel-info">
-            <h3>[Project Title]</h3>
-            <p>[One line: what it was, your role, the result - e.g. "TVC for a partner store, shot & edited with the Dai Dai Media team."]</p>
+            <h3>UEH-CSR</h3>
+            <p>An academic short film explaining ISO 26000 and how it shapes a company's operations and performance. I recorded, edited, and acted in the video, and supported the writing of the content and script.</p>
           </div>
         </div>
       </div>
@@ -540,12 +716,12 @@
       <div class="reel-item">
         <div class="reel-tc">02:17</div>
         <div class="reel-content">
-          <div class="reel-frame">
-            <iframe src="https://www.youtube.com/embed/VIDEO_ID" title="Project 2" allowfullscreen></iframe>
+          <div class="reel-frame vertical">
+            <iframe src="https://drive.google.com/file/d/1UvCGrhUj4Q3VBEO0nhFJrNkeGcgmSE67/preview" title="SWEETHUT" allowfullscreen></iframe>
           </div>
           <div class="reel-info">
-            <h3>[Project Title]</h3>
-            <p>[Description of your second project.]</p>
+            <h3>SWEETHUT</h3>
+            <p>A short-form TVC for Reels and TikTok promoting a specialty drinks café, highlighting how each drink is made. Produced with the Dai Dai Media team - I handled recording, chose the shooting format, and supported the edit.</p>
           </div>
         </div>
       </div>
@@ -553,12 +729,12 @@
       <div class="reel-item">
         <div class="reel-tc">03:42</div>
         <div class="reel-content">
-          <div class="reel-frame">
-            <iframe src="https://www.youtube.com/embed/VIDEO_ID" title="Project 3" allowfullscreen></iframe>
+          <div class="reel-frame vertical">
+            <iframe src="https://drive.google.com/file/d/1z7pJ5NZlTb3RWjra9bQRGOzwxYXuSG9g/preview" title="Cuu Van Ky" allowfullscreen></iframe>
           </div>
           <div class="reel-info">
-            <h3>[Project Title]</h3>
-            <p>[Description of your third project.]</p>
+            <h3>Cuu Van Ky</h3>
+            <p>A short promotional video for a restaurant specializing in roast duck. Produced with the Dai Dai Media team - I handled recording and supported the edit.</p>
           </div>
         </div>
       </div>
@@ -572,13 +748,56 @@
     <h2 class="section-title">Case Studies</h2>
 
     <div class="box case-item" data-reveal>
-      <h3>[Case Study Title - e.g. "Launching a Local Café's TikTok Presence"]</h3>
-      <p style="color:var(--muted); font-size:14px; margin-top:8px;">[Client / brand name] · [Timeframe]</p>
-      <div class="case-grid">
-        <div><b>OBJECTIVE</b><p>[What was the goal? e.g. grow followers, boost bookings, launch a product.]</p></div>
-        <div><b>APPROACH</b><p>[What did you actually do - channels, content, targeting, budget.]</p></div>
-        <div><b>RESULT</b><p>[Numbers if you have them - reach, views, conversion, revenue impact.]</p></div>
+      <div class="case-title-row">
+        <h3>Trạm Hương - Marketing Plan for a Vietnamese Scented Candle Brand</h3>
+        <a href="https://docs.google.com/document/d/1okCH717ly1V0E9uii4XyCXjXrzkY9JEl/export?format=pdf" class="btn-download" target="_blank">↓ DOWNLOAD FULL PLAN</a>
       </div>
+      <p style="color:var(--muted); font-size:14px; margin-top:8px;">Trạm Hương (premium artisanal candles) · UEH Strategic Marketing course · 5-person team project</p>
+      <div class="role-badge">MY CONTRIBUTION - Ch. 2.3–2.4 Competitive &amp; SWOT Analysis · Ch. 4.6–4.8 Campaign Tactics, Distribution &amp; Measurement</div>
+
+      <div class="case-subhead">THE GAP IN THE MARKET</div>
+      <p style="font-size:15px; color:#3A362B; margin-bottom:10px;">The Vietnamese candle market sits split between two extremes: cheap domestic handmade candles and expensive imported brands like Yankee Candle. Neither speaks to young, urban "Urban Zen" consumers who want a product with cultural meaning. My competitive and SWOT analysis identified this as Trạm Hương's core opening: a cultural-storytelling candle brand - "hương địa danh" (scent of a place) - that neither side of the market had claimed.</p>
+      <p style="font-size:14px; color:var(--muted);">Biggest risks flagged in the analysis: a brand-new name with no recognition yet, a handmade production process that's hard to scale fast, and a concept simple enough for bigger players to copy once it gains traction.</p>
+
+      <div class="case-subhead">CAMPAIGN STRATEGY - PULL THEN PUSH</div>
+      <div class="strategy-columns">
+        <div class="strategy-col">
+          <h4>Pull (early phase - build demand)</h4>
+          <ul>
+            <li>"Hương địa danh" storytelling video series on TikTok/Instagram, one region-scent per story</li>
+            <li>Micro-influencer partnerships in wellness &amp; home-decor, chosen for audience fit over reach</li>
+            <li>"Trạm Hương Hành Trình" pop-up scent experiences at concept stores in HCMC &amp; Hanoi</li>
+            <li>Branded hashtag campaign turning customer memories into user-generated content</li>
+          </ul>
+        </div>
+        <div class="strategy-col">
+          <h4>Push (later phase - retain &amp; convert)</h4>
+          <ul>
+            <li>"Hành Trang Hương Việt" loyalty points program redeemable for limited scents</li>
+            <li>Seasonal gift combos timed to Tết, Valentine's, Mid-Autumn Festival</li>
+            <li>"Welcome 10%" first-order discount + free shipping on Website &amp; TikTok Shop</li>
+            <li>In-store standees and display at concept stores as a final purchase nudge</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="case-subhead">OMNI-CHANNEL DISTRIBUTION</div>
+      <div class="channel-row">
+        <span class="channel-chip">TikTok / Instagram / Facebook</span>
+        <span class="channel-chip">Official Website (flagship + retargeting)</span>
+        <span class="channel-chip">Shopee Mall &amp; TikTok Shop</span>
+        <span class="channel-chip">Concept Stores (HCMC &amp; Hanoi)</span>
+      </div>
+      <p style="font-size:14px; color:var(--muted); margin-top:12px;">Recommended a "scent-matching" quiz tool for the website and a selective (not mass) offline rollout, so every touchpoint stays visually and narratively consistent with the brand.</p>
+
+      <div class="case-subhead">EXPECTED IMPACT - YEAR 1 FORECAST</div>
+      <div class="kpi-grid">
+        <div class="kpi-card"><div class="kpi-number">25%</div><div class="kpi-label">BRAND AWARENESS LIFT</div></div>
+        <div class="kpi-card"><div class="kpi-number">10K</div><div class="kpi-label">ORGANIC FOLLOWERS</div></div>
+        <div class="kpi-card"><div class="kpi-number">5%+</div><div class="kpi-label">ENGAGEMENT RATE</div></div>
+        <div class="kpi-card"><div class="kpi-number">40%</div><div class="kpi-label">REVENUE FROM GIFT SETS</div></div>
+      </div>
+      <p class="case-note">Note: this was a strategic plan built and forecasted as a course project - not an executed campaign. Figures reflect our team's projected targets, not measured results.</p>
     </div>
   </div>
 </section>
@@ -644,11 +863,11 @@
         <span class="skill-tag">Content Strategy</span>
         <span class="skill-tag">Market Research</span>
         <span class="skill-tag">Photography & Video Production</span>
-        <span class="skill-tag">Adobe Premiere</span>
-        <span class="skill-tag">CapCut</span>
-        <span class="skill-tag">Photoshop</span>
-        <span class="skill-tag">Lightroom</span>
-        <span class="skill-tag">Canva</span>
+        <span class="skill-tag app-tag">Adobe Premiere</span>
+        <span class="skill-tag app-tag">CapCut</span>
+        <span class="skill-tag app-tag">Photoshop</span>
+        <span class="skill-tag app-tag">Lightroom</span>
+        <span class="skill-tag app-tag">Canva</span>
         <span class="skill-tag">CRM & Client Consultation</span>
         <span class="skill-tag">Negotiation</span>
         <span class="skill-tag">Sales Reporting</span>
@@ -684,7 +903,7 @@
 </section>
 
 <footer>
-  © 2026 MINH PHAM
+  © 2026 MINH PHAM - BUILT WITH GITHUB PAGES
 </footer>
 
 <script>
