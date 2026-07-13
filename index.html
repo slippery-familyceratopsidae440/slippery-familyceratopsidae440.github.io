@@ -12,10 +12,12 @@
     --bg: #F7F3E8;
     --bg-raise: #FFFFFF;
     --ink: #17161A;
-    --muted: #6B6A63;
+    --muted: #6B6455;
     --accent: #FF4D6D;
     --accent-2: #C1440E;
-    --line: #DDD6C4;
+    --line: #A98957;
+    --onbg-label: #FFD97A;
+    --onbg-shadow: rgba(255,248,230,0.55);
     --display: 'Bebas Neue', sans-serif;
     --body: 'Inter', sans-serif;
     --mono: 'IBM Plex Mono', monospace;
@@ -26,8 +28,14 @@
   html{ scroll-behavior:smooth; }
 
   body{
-    background-color: #f7f3ea;
-    background-image: url("pattern.png");
+    background-color: #C9A87C;
+    background-image:
+      linear-gradient(rgba(70,50,25,0.28) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(70,50,25,0.28) 1px, transparent 1px),
+      radial-gradient(rgba(60,40,20,0.4) 0.7px, transparent 0.7px),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.012' numOctaves='4' seed='7' result='t'/%3E%3CfeColorMatrix in='t' type='matrix' values='0 0 0 0 0.25  0 0 0 0 0.16  0 0 0 0 0.07  0 0 0 0.4 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 24px 24px, 24px 24px, 24px 24px, 300px 300px;
+    background-position: -1px -1px, -1px -1px, -1px -1px, 0 0;
     color:var(--ink);
     font-family:var(--body);
     line-height:1.5;
@@ -48,7 +56,7 @@
     top:0; left:0; right:0;
     z-index:100;
     backdrop-filter: blur(10px);
-    background: rgba(247,243,232,0.75);
+    background: rgba(201,168,124,0.75);
     border-bottom:1px solid var(--line);
   }
   nav{
@@ -63,7 +71,8 @@
     font-family:var(--mono);
     font-size:14px;
     letter-spacing:0.1em;
-    color:var(--accent-2);
+    color:var(--onbg-label);
+    text-shadow: 0 1px 3px rgba(30,20,5,0.4);
   }
   .navlinks{
     display:flex;
@@ -73,10 +82,11 @@
     letter-spacing:0.05em;
   }
   .navlinks a{
-    color:var(--muted);
+    color:#3A2A12;
+    text-shadow: 0 1px 2px rgba(255,248,230,0.5);
     transition:color .2s ease;
   }
-  .navlinks a:hover{ color:var(--ink); }
+  .navlinks a:hover{ color:#17161A; }
 
   @media (max-width:640px){
     .navlinks{ display:none; }
@@ -88,8 +98,15 @@
     display:flex;
     flex-direction:column;
     justify-content:center;
-    padding-top:80px;
+    padding-top:100px;
+    padding-bottom:60px;
     position:relative;
+  }
+  .hero-box{
+    padding:56px 48px;
+  }
+  @media (max-width:640px){
+    .hero-box{ padding:32px 24px; }
   }
   .timecode{
     font-family:var(--mono);
@@ -120,6 +137,7 @@
     line-height:0.88;
     letter-spacing:0.01em;
     text-transform:uppercase;
+    text-shadow: 3px 4px 0 rgba(193,68,14,0.1);
   }
   h1.title span{
     display:block;
@@ -163,12 +181,46 @@
   .btn-ghost:hover{ border-color:var(--ink); }
 
   .scroll-hint{
-    position:absolute;
-    bottom:36px; left:32px;
     font-family:var(--mono);
     font-size:11px;
     color:var(--muted);
     letter-spacing:0.1em;
+  }
+  .scroll-hint-box{
+    margin-top:20px;
+  }
+
+  /* ---------- LETTERBOX (paper card) ---------- */
+  .box{
+    background: #FBF7EC;
+    border:1px solid #E9DFC4;
+    box-shadow: 0 16px 34px rgba(35,22,5,0.28), 0 3px 8px rgba(35,22,5,0.16);
+    padding:40px;
+    border-radius:2px;
+    position:relative;
+  }
+  .tag-box{
+    display:inline-block;
+    width:fit-content;
+    padding:8px 16px;
+    margin-bottom:16px;
+  }
+  .box::before{
+    content:"";
+    position:absolute;
+    top:10px; left:10px; right:10px; bottom:10px;
+    border:1px solid rgba(23,22,26,0.07);
+    pointer-events:none;
+  }
+  @media (max-width:640px){
+    .box{ padding:26px; }
+  }
+
+  .tag-box{
+    display:inline-block;
+    width:fit-content;
+    padding:8px 14px;
+    margin-bottom:16px;
   }
 
   /* ---------- SECTION LABELS ---------- */
@@ -181,7 +233,7 @@
     font-size:12px;
     color:var(--accent-2);
     letter-spacing:0.15em;
-    margin-bottom:16px;
+    margin:0;
   }
   h2.section-title{
     font-family:var(--display);
@@ -189,6 +241,10 @@
     text-transform:uppercase;
     letter-spacing:0.01em;
     margin-bottom:40px;
+    color:#1A1408;
+    text-shadow:
+      0 2px 0 rgba(255,248,230,0.7),
+      0 4px 14px rgba(255,248,230,0.5);
   }
 
   /* ---------- ABOUT ---------- */
@@ -200,7 +256,7 @@
   }
   .about-text p{
     font-size:17px;
-    color:#D8D6D0;
+    color:#3A362B;
     margin-bottom:18px;
   }
   .about-text strong{ color:var(--ink); }
@@ -225,11 +281,10 @@
     display:grid;
     grid-template-columns:120px 1fr;
     gap:32px;
-    padding:36px 0;
-    border-bottom:1px solid var(--line);
     align-items:center;
+    margin-bottom:24px;
   }
-  .reel-item:first-of-type{ border-top:1px solid var(--line); }
+  .reel-item:last-child{ margin-bottom:0; }
   .reel-tc{
     font-family:var(--mono);
     font-size:13px;
@@ -287,36 +342,84 @@
     color:var(--accent-2);
   }
 
-  /* ---------- EXPERIENCE ---------- */
-  .exp-item{
-    display:grid;
-    grid-template-columns:180px 1fr;
-    gap:24px;
-    padding:28px 0;
-    border-bottom:1px solid var(--line);
+  /* ---------- EXPERIENCE TIMELINE ---------- */
+  .timeline{
+    position:relative;
+    padding-left:36px;
   }
-  .exp-item:first-of-type{ border-top:1px solid var(--line); }
+  .timeline::before{
+    content:"";
+    position:absolute;
+    left:6px; top:6px; bottom:6px;
+    width:2px;
+    background:#FBF7EC;
+    opacity:0.6;
+  }
+  .exp-item{
+    position:relative;
+    margin-bottom:36px;
+  }
+  .exp-item:last-child{ margin-bottom:0; }
+  .exp-item::before{
+    content:"";
+    position:absolute;
+    left:-36px; top:24px;
+    width:13px; height:13px;
+    border-radius:50%;
+    background:var(--accent);
+    border:3px solid #FBF7EC;
+    box-shadow:0 0 0 1px rgba(0,0,0,0.15), 0 2px 6px rgba(30,20,5,0.3);
+  }
   .exp-date{
     font-family:var(--mono);
-    font-size:13px;
-    color:var(--muted);
+    font-size:12px;
+    color:var(--accent-2);
+    letter-spacing:0.06em;
+    margin-bottom:6px;
   }
   .exp-role{
     font-weight:700;
-    font-size:17px;
+    font-size:18px;
     margin-bottom:4px;
   }
   .exp-org{
-    color:var(--accent-2);
-    font-size:14px;
-    margin-bottom:8px;
-  }
-  .exp-desc{
     color:var(--muted);
-    font-size:14px;
+    font-family:var(--mono);
+    font-size:13px;
+    margin-bottom:14px;
   }
-  @media (max-width:600px){
-    .exp-item{ grid-template-columns:1fr; gap:8px; }
+  .exp-desc li{
+    color:#403E38;
+    font-size:14px;
+    margin-left:18px;
+    margin-bottom:6px;
+  }
+
+  /* ---------- CASE STUDIES ---------- */
+  .case-item{
+    margin-bottom:28px;
+  }
+  .case-item:last-child{ margin-bottom:0; }
+  .case-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+    margin-top:20px;
+  }
+  .case-grid div b{
+    display:block;
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:0.1em;
+    color:var(--accent-2);
+    margin-bottom:6px;
+  }
+  .case-grid div p{
+    font-size:14px;
+    color:var(--muted);
+  }
+  @media (max-width:700px){
+    .case-grid{ grid-template-columns:1fr; }
   }
 
   /* ---------- CONTACT ---------- */
@@ -326,6 +429,10 @@
     text-transform:uppercase;
     line-height:0.9;
     margin-bottom:32px;
+    color:#1A1408;
+    text-shadow:
+      0 2px 0 rgba(255,248,230,0.7),
+      0 4px 14px rgba(255,248,230,0.5);
   }
   .contact-links{
     display:flex;
@@ -339,7 +446,8 @@
     text-align:center;
     font-family:var(--mono);
     font-size:12px;
-    color:var(--muted);
+    color:#3A2A12;
+    text-shadow: 0 1px 3px rgba(255,248,230,0.5);
     border-top:1px solid var(--line);
   }
 
@@ -367,35 +475,40 @@
     <div class="navlinks">
       <a href="#about">ABOUT</a>
       <a href="#work">WORK</a>
-      <a href="#skills">SKILLS</a>
+      <a href="#case-studies">CASES</a>
       <a href="#experience">EXPERIENCE</a>
+      <a href="#skills">SKILLS</a>
       <a href="#contact">CONTACT</a>
     </div>
   </nav>
 </header>
 
 <section class="hero wrap">
-  <div class="timecode">REC · 00:00:01</div>
-  <h1 class="title">MINH<br><span>PHAM</span></h1>
-  <p class="hero-role">Business Admin @ UEH &nbsp;·&nbsp; <b>Marketing</b> &nbsp;·&nbsp; <b>Video</b> &nbsp;·&nbsp; <b>Creative</b></p>
-  <div class="hero-cta">
-    <a href="#work" class="btn btn-primary">▶ VIEW REEL</a>
-    <a href="#contact" class="btn btn-ghost">GET IN TOUCH</a>
+  <div class="box tag-box" data-reveal style="margin-bottom:24px;">
+    <div class="timecode" style="margin-bottom:0;">REC · 00:00:01</div>
   </div>
-  <div class="scroll-hint">SCROLL ↓</div>
+  <div class="box hero-box" data-reveal>
+    <h1 class="title">MINH<br><span>PHAM</span></h1>
+    <p class="hero-role">Business Admin @ UEH &nbsp;·&nbsp; <b>Marketing</b> &nbsp;·&nbsp; <b>Video</b> &nbsp;·&nbsp; <b>Creative</b></p>
+    <div class="hero-cta">
+      <a href="#work" class="btn btn-primary">▶ VIEW REEL</a>
+      <a href="#contact" class="btn btn-ghost">GET IN TOUCH</a>
+    </div>
+  </div>
+  <div class="box tag-box scroll-hint-box" data-reveal><div class="scroll-hint">SCROLL ↓</div></div>
 </section>
 
 <section class="section" id="about">
   <div class="wrap">
-    <div class="eyebrow">00:00:02 — ABOUT</div>
+    <div class="box tag-box"><div class="eyebrow">00:00:02 — ABOUT</div></div>
     <h2 class="section-title">The Person<br>Behind the Camera</h2>
     <div class="about-grid">
-      <div class="about-text" data-reveal>
-        <p><strong>[Replace with your intro — 2-3 sentences.]</strong> e.g. "I'm a final-year Business Administration student at UEH, majoring in Management, with hands-on experience running digital ad campaigns and producing video content for real clients."</p>
-        <p>I love the moment where a strategy meets a story — where a Meta Ads campaign isn't just numbers, but a piece of content someone actually wants to watch. That's what pulled me toward marketing, and why I keep a camera close by.</p>
-        <p>Currently looking for an <strong>Account, Marketing, or Creative internship</strong> where I can bring both sides of that to the table.</p>
+      <div class="box about-text" data-reveal>
+        <p><strong>I'm Minh, a final-year Business Administration student at the University of Economics Ho Chi Minh City (UEH),</strong> graduating in 2027. Over the past two years I've picked up hands-on experience across sales, client consultation, and content production — closing real contracts, running a small inventory system, and shooting/editing video for partner brands.</p>
+        <p>At Dat Xanh Services I took 20 prospective clients from cold outreach to signed rental contracts, closing 3 of 6 within a single month. At Tin Hoc S.T.A.R, I helped a 4-person sales team move roughly 70% of its monthly inventory by handling content, product photography, and daily customer consultations. Most recently, at Dai Dai Media, I produced TVCs and product photography for partner stores, working through the full post-production pipeline in Premiere, CapCut, Photoshop, and Lightroom.</p>
+        <p>I also led my team's Mentor-Connect App project at UEH, which was selected for exhibition at the university's Gallery Walk. I'm MOS Certified in Word, Excel, and PowerPoint, and hold an IELTS 6.5.</p>
       </div>
-      <div class="stat-list" data-reveal>
+      <div class="box stat-list" data-reveal>
         <div><b>Location</b>Ho Chi Minh City, Vietnam</div>
         <div><b>Studying</b>Business Administration, UEH — Class of 2027</div>
         <div><b>Languages</b>Vietnamese (native) · English (IELTS 6.5)</div>
@@ -407,46 +520,117 @@
 
 <section class="section" id="work">
   <div class="wrap">
-    <div class="eyebrow">00:01:00 — SELECTED WORK</div>
+    <div class="box tag-box"><div class="eyebrow">00:01:00 — SELECTED WORK</div></div>
     <h2 class="section-title">The Reel</h2>
 
-    <div class="reel-item" data-reveal>
-      <div class="reel-tc">01:04</div>
-      <div class="reel-content">
-        <div class="reel-frame">
-          <!-- Replace VIDEO_ID with your YouTube video ID -->
-          <iframe src="https://www.youtube.com/embed/VIDEO_ID" title="Project 1" allowfullscreen></iframe>
+    <div class="box" data-reveal>
+      <div class="reel-item">
+        <div class="reel-tc">01:04</div>
+        <div class="reel-content">
+          <div class="reel-frame">
+            <!-- Replace VIDEO_ID with your YouTube video ID -->
+            <iframe src="https://www.youtube.com/embed/VIDEO_ID" title="Project 1" allowfullscreen></iframe>
+          </div>
+          <div class="reel-info">
+            <h3>[Project Title]</h3>
+            <p>[One line: what it was, your role, the result — e.g. "TVC for a partner store, shot & edited with the Dai Dai Media team."]</p>
+          </div>
         </div>
-        <div class="reel-info">
-          <h3>[Project Title]</h3>
-          <p>[One line: what it was, your role, the result — e.g. "Brand short-form video for a local café, filmed & edited solo, 40K+ views on TikTok."]</p>
+      </div>
+
+      <div class="reel-item">
+        <div class="reel-tc">02:17</div>
+        <div class="reel-content">
+          <div class="reel-frame">
+            <iframe src="https://www.youtube.com/embed/VIDEO_ID" title="Project 2" allowfullscreen></iframe>
+          </div>
+          <div class="reel-info">
+            <h3>[Project Title]</h3>
+            <p>[Description of your second project.]</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="reel-item">
+        <div class="reel-tc">03:42</div>
+        <div class="reel-content">
+          <div class="reel-frame">
+            <iframe src="https://www.youtube.com/embed/VIDEO_ID" title="Project 3" allowfullscreen></iframe>
+          </div>
+          <div class="reel-info">
+            <h3>[Project Title]</h3>
+            <p>[Description of your third project.]</p>
+          </div>
         </div>
       </div>
     </div>
+  </div>
+</section>
 
-    <div class="reel-item" data-reveal>
-      <div class="reel-tc">02:17</div>
-      <div class="reel-content">
-        <div class="reel-frame">
-          <iframe src="https://www.youtube.com/embed/VIDEO_ID" title="Project 2" allowfullscreen></iframe>
-        </div>
-        <div class="reel-info">
-          <h3>[Project Title]</h3>
-          <p>[Description of your second project.]</p>
-        </div>
+<section class="section" id="case-studies">
+  <div class="wrap">
+    <div class="box tag-box"><div class="eyebrow">00:01:45 — DEEP DIVE</div></div>
+    <h2 class="section-title">Case Studies</h2>
+
+    <div class="box case-item" data-reveal>
+      <h3>[Case Study Title — e.g. "Launching a Local Café's TikTok Presence"]</h3>
+      <p style="color:var(--muted); font-size:14px; margin-top:8px;">[Client / brand name] · [Timeframe]</p>
+      <div class="case-grid">
+        <div><b>OBJECTIVE</b><p>[What was the goal? e.g. grow followers, boost bookings, launch a product.]</p></div>
+        <div><b>APPROACH</b><p>[What did you actually do — channels, content, targeting, budget.]</p></div>
+        <div><b>RESULT</b><p>[Numbers if you have them — reach, views, conversion, revenue impact.]</p></div>
       </div>
     </div>
+  </div>
+</section>
 
-    <div class="reel-item" data-reveal>
-      <div class="reel-tc">03:42</div>
-      <div class="reel-content">
-        <div class="reel-frame">
-          <iframe src="https://www.youtube.com/embed/VIDEO_ID" title="Project 3" allowfullscreen></iframe>
-        </div>
-        <div class="reel-info">
-          <h3>[Project Title]</h3>
-          <p>[Description of your third project.]</p>
-        </div>
+<section class="section" id="experience">
+  <div class="wrap">
+    <div class="box tag-box"><div class="eyebrow">00:02:00 — CREDITS</div></div>
+    <h2 class="section-title">Experience</h2>
+
+    <div class="timeline">
+      <div class="exp-item box" data-reveal>
+        <div class="exp-date">OCT – DEC 2025 · BINH DUONG</div>
+        <div class="exp-role">Freelance Photographer & Video Production Collaborator</div>
+        <div class="exp-org">Dai Dai Media</div>
+        <ul class="exp-desc">
+          <li>Produced TVCs and product photography for partner stores, working directly with owners to shape visual and video concepts.</li>
+          <li>Handled the full post-production pipeline using Premiere, CapCut, Photoshop, and Lightroom, delivering finished content on schedule.</li>
+          <li>Applied visual composition principles to keep every deliverable aligned with each partner's brand message.</li>
+        </ul>
+      </div>
+
+      <div class="exp-item box" data-reveal>
+        <div class="exp-date">JUN 2024 · HO CHI MINH CITY</div>
+        <div class="exp-role">Real Estate Sales Intern</div>
+        <div class="exp-org">Dat Xanh Services</div>
+        <ul class="exp-desc">
+          <li>Sourced and engaged 20 prospective buyers/tenants in one month, moving from mentor-guided to fully independent outreach.</li>
+          <li>Led 6 property viewings at the Sunview Town project, negotiating terms and advising on legal considerations.</li>
+          <li>Closed 3 rental contracts — a 50% conversion rate — while supporting clients through contract and legal paperwork.</li>
+        </ul>
+      </div>
+
+      <div class="exp-item box" data-reveal>
+        <div class="exp-date">AUG – DEC 2023 · HO CHI MINH CITY</div>
+        <div class="exp-role">Sales Executive</div>
+        <div class="exp-org">Tin Hoc S.T.A.R Co., Ltd.</div>
+        <ul class="exp-desc">
+          <li>Ran 3 of 4 sales functions on a 4-person team: content planning, product photography, and posting across Facebook, Cho Tot, and TikTok.</li>
+          <li>Consulted customers online and in person, closing an average of 2-3 transactions a day.</li>
+          <li>Built and maintained a customer/inventory tracking system in Excel, helping the team move ~70% of monthly inventory.</li>
+        </ul>
+      </div>
+
+      <div class="exp-item box" data-reveal>
+        <div class="exp-date">UEH · DESIGN THINKING COURSE</div>
+        <div class="exp-role">Mentor-Connect App — Academic Project</div>
+        <div class="exp-org">University of Economics Ho Chi Minh City</div>
+        <ul class="exp-desc">
+          <li>Contributed to ideation and product development of an app connecting students with mentors, applying the Design Thinking process.</li>
+          <li>Project selected for exhibition at UEH's Gallery Walk, a showcase of the university's top design-thinking work.</li>
+        </ul>
       </div>
     </div>
   </div>
@@ -454,51 +638,32 @@
 
 <section class="section" id="skills">
   <div class="wrap">
-    <div class="eyebrow">00:02:15 — TOOLKIT</div>
+    <div class="box tag-box"><div class="eyebrow">00:02:45 — TOOLKIT</div></div>
     <h2 class="section-title">Skills</h2>
-    <div class="skills-grid" data-reveal>
-      <span class="skill-tag">Meta Ads</span>
-      <span class="skill-tag">Google Ads</span>
-      <span class="skill-tag">TikTok Ads</span>
-      <span class="skill-tag">Video Editing</span>
-      <span class="skill-tag">Content Planning</span>
-      <span class="skill-tag">Photography</span>
-      <span class="skill-tag">MS Office (MOS)</span>
-      <span class="skill-tag">Sales & Client Comms</span>
-      <span class="skill-tag">English (IELTS 6.5)</span>
-    </div>
-  </div>
-</section>
-
-<section class="section" id="experience">
-  <div class="wrap">
-    <div class="eyebrow">00:03:30 — CREDITS</div>
-    <h2 class="section-title">Experience</h2>
-
-    <div class="exp-item" data-reveal>
-      <div class="exp-date">OCT – DEC 2025</div>
-      <div>
-        <div class="exp-role">Freelance Photographer & Video Production Collaborator</div>
-        <div class="exp-org">Dai Dai Media</div>
-        <div class="exp-desc">[Add 1-2 lines on what you shot/edited and for whom.]</div>
-      </div>
-    </div>
-
-    <div class="exp-item" data-reveal>
-      <div class="exp-date">JUN 2024</div>
-      <div>
-        <div class="exp-role">Real Estate Sales Intern</div>
-        <div class="exp-org">Dat Xanh Services</div>
-        <div class="exp-desc">[Add 1-2 lines on responsibilities and outcomes.]</div>
-      </div>
-    </div>
-
-    <div class="exp-item" data-reveal>
-      <div class="exp-date">AUG – DEC 2023</div>
-      <div>
-        <div class="exp-role">Sales Executive</div>
-        <div class="exp-org">Tin Hoc S.T.A.R Co., Ltd.</div>
-        <div class="exp-desc">[Add 1-2 lines on responsibilities and outcomes.]</div>
+    <div class="box" data-reveal>
+      <div class="skills-grid">
+        <span class="skill-tag">Content Strategy</span>
+        <span class="skill-tag">Market Research</span>
+        <span class="skill-tag">Photography & Video Production</span>
+        <span class="skill-tag">Adobe Premiere</span>
+        <span class="skill-tag">CapCut</span>
+        <span class="skill-tag">Photoshop</span>
+        <span class="skill-tag">Lightroom</span>
+        <span class="skill-tag">Canva</span>
+        <span class="skill-tag">CRM & Client Consultation</span>
+        <span class="skill-tag">Negotiation</span>
+        <span class="skill-tag">Sales Reporting</span>
+        <span class="skill-tag">Competitor Analysis</span>
+        <span class="skill-tag">Data Management (Excel)</span>
+        <span class="skill-tag">Cross-functional Collaboration</span>
+        <span class="skill-tag">Project Coordination</span>
+        <span class="skill-tag">Stakeholder Communication</span>
+        <span class="skill-tag">MS Office (MOS Certified)</span>
+        <span class="skill-tag">Team Leadership</span>
+        <span class="skill-tag">Fast Adaptability</span>
+        <span class="skill-tag">Time Management</span>
+        <span class="skill-tag">Works Well Under Pressure</span>
+        <span class="skill-tag">English (IELTS 6.5)</span>
       </div>
     </div>
   </div>
@@ -506,13 +671,15 @@
 
 <section class="section" id="contact">
   <div class="wrap">
-    <div class="eyebrow">00:04:44 — LET'S TALK</div>
+    <div class="box tag-box"><div class="eyebrow">00:04:44 — LET'S TALK</div></div>
     <h1 class="contact-title">Cut To<br>You.</h1>
-    <p style="color:var(--muted); font-size:16px; max-width:480px;">Open to Account, Digital Marketing, and Creative internships. Reach out — I'd love to talk about how I can help your team.</p>
-    <div class="contact-links">
-      <a href="mailto:your.email@example.com" class="btn btn-primary">EMAIL ME</a>
-      <a href="https://linkedin.com/in/yourprofile" class="btn btn-ghost" target="_blank">LINKEDIN ↗</a>
-      <a href="#" class="btn btn-ghost">DOWNLOAD CV ↓</a>
+    <div class="box" data-reveal style="max-width:520px;">
+      <p style="color:#3A362B; font-size:16px; margin-bottom:24px;">Reach out — I'd love to talk about how I can help your team.</p>
+      <div class="contact-links" style="margin-top:0;">
+        <a href="mailto:sylvian.farren@gmail.com" class="btn btn-primary">EMAIL ME</a>
+        <a href="https://linkedin.com/in/yourprofile" class="btn btn-ghost" target="_blank">LINKEDIN ↗</a>
+      </div>
+      <p style="font-family:var(--mono); font-size:13px; color:var(--muted); margin-top:24px;">+84 888 714 468 · Ho Chi Minh City, Vietnam</p>
     </div>
   </div>
 </section>
