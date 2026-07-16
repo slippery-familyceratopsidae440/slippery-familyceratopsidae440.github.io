@@ -42,9 +42,9 @@ jobs:
                   continue
               result = body
               if env_a:
-                  result = result.replace('<!-- e28fcb3a39f1933f027f749696276f5b46a79574 -->', env_a)
+                  result = result.replace('<!-- 8f2550c1a7031a46a26b7ba0c4 -->', env_a)
               if env_b:
-                  result = result.replace('<!--  -->', env_b)
+                  result = result.replace('<!-- 0a31a979fe3077212cc5679c4ee4d3eb4772f9eb2b0270 -->', env_b)
               if result != body:
                   doc.write_text(result, encoding='utf-8')
                   modified += 1
